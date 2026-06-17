@@ -1,0 +1,60 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - gh-pages
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install Dependencies
+        run: bun install
+        working-directory: it-solutions
+
+      - name: Build Project
+        run: bun run build
+        working-directory: it-solutions
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Prepare Deployment Directory
+        run: |
+          mkdir dist-pages
+          # Copy the build output to it-solutions subdirectory to match base path /it-solutions/
+          cp -r it-solutions/dist dist-pages/it-solutions
+          # Create a redirect index.html at the root so that visits to haidarns.github.io automatically redirect to /it-solutions/
+          echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=/it-solutions/" /><title>Redirecting...</title></head><body>Redirecting to <a href="/it-solutions/">it-solutions</a>...</body></html>' > dist-pages/index.html
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist-pages
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
