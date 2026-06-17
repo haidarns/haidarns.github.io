@@ -62,7 +62,7 @@ onMounted(() => {
                 <Zap class="w-5 h-5" />
               </span>
               <span class="text-xl font-bold font-sans tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent group-hover:opacity-80 transition-opacity">
-                Apex<span class="text-primary-hover dark:text-primary">Solutions</span>
+                Awanusa <span class="text-primary-hover dark:text-primary">Solutions</span>
               </span>
             </router-link>
 
@@ -90,7 +90,7 @@ onMounted(() => {
                 :href="baseUrl + '#contact'" 
                 class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-primary to-secondary text-slate-900 dark:text-slate-900 font-semibold text-sm hover:shadow-lg hover:shadow-sky-500/20 active:scale-98 transition-all duration-300 hover:opacity-90"
               >
-                Get Consultation
+                Contact Us
               </a>
             </div>
 
@@ -128,7 +128,7 @@ onMounted(() => {
             :href="baseUrl + '#contact'" 
             class="block text-center w-full py-3 rounded-xl bg-gradient-to-r from-primary to-secondary text-slate-900 font-semibold text-sm"
           >
-            Get Consultation
+            Contact Us
           </a>
         </div>
       </header>
@@ -145,7 +145,7 @@ onMounted(() => {
             
             <div class="space-y-4">
               <span class="text-lg font-bold font-sans tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
-                Apex<span class="text-primary-hover">Solutions</span>
+                Awanusa <span class="text-primary-hover">Solutions</span>
               </span>
               <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-light">
                 Premium systems engineering, cloud configuration architectures, and zero-trust deployments.
@@ -165,17 +165,17 @@ onMounted(() => {
             <div>
               <h4 class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-4">Perusahaan</h4>
               <ul class="space-y-2.5 text-xs text-slate-600 dark:text-slate-400">
-                <li><a href="#" class="hover:text-primary transition-colors">Tentang Kami</a></li>
-                <li><a :href="baseUrl + '#solutions'" class="hover:text-primary transition-colors">Studi Kasus</a></li>
-                <li><a href="#" class="hover:text-primary transition-colors">Karir</a></li>
-                <li><a :href="baseUrl + '#contact'" class="hover:text-primary transition-colors">Kontak</a></li>
+                <li><a href="#" class="hover:text-primary transition-colors">About Us</a></li>
+                <li><a :href="baseUrl + '#solutions'" class="hover:text-primary transition-colors">Case Studies</a></li>
+                <li><a href="#" class="hover:text-primary transition-colors">Partnership</a></li>
+                <li><a :href="baseUrl + '#contact'" class="hover:text-primary transition-colors">Contact</a></li>
               </ul>
             </div>
 
             <div>
               <h4 class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-4 font-mono">Newsletter</h4>
               <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 font-light">
-                Dapatkan update mingguan seputar DevOps, cloud scalability, dan tren keamanan.
+                Get weekly update about DevSecOps, Cloud Optimization, Security Trends, and many more.
               </p>
               <div class="flex gap-2">
                 <input 
@@ -192,7 +192,7 @@ onMounted(() => {
           </div>
 
           <div class="pt-6 border-t border-slate-200/10 dark:border-slate-800/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
-            <p>&copy; 2026 ApexSolutions. All rights reserved.</p>
+            <p>&copy; 2026 Awanusa Solutions. All rights reserved.</p>
             <div class="flex space-x-6">
               <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
               <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>

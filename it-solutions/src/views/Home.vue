@@ -104,7 +104,7 @@ const solutions = [
     stats: 'Zero Breaches'
   },
   {
-    title: 'ApexCore Enterprise ERP Platform',
+    title: 'Awanusa Core Enterprise ERP Platform',
     category: 'Software',
     description: 'Built a customized dashboard suite coordinating supply chain metrics, integrating directly with existing legacy inventory software.',
     tech: ['Vue 3', 'Node.js', 'PostgreSQL'],
@@ -208,10 +208,6 @@ onUnmounted(() => {
         
         <!-- Hero Text -->
         <div class="lg:col-span-7 space-y-6 sm:space-y-8 text-left">
-          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full glass-card border-sky-400/20 text-xs font-semibold text-primary-dark dark:text-primary tracking-wide">
-            <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-            <span>Available for Global IT Consulting</span>
-          </div>
           
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-sans leading-[1.1]">
             Architecting <br class="hidden sm:inline" />
@@ -242,6 +238,7 @@ onUnmounted(() => {
           </div>
 
           <!-- Client Logos Banner -->
+          <!-- Temporary disabled
           <div class="pt-6 border-t border-slate-200/10 dark:border-slate-800/10">
             <p class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3">TRUSTED BY INNOVATORS</p>
             <div class="flex flex-wrap gap-6 text-slate-500 dark:text-slate-400 opacity-60">
@@ -250,6 +247,7 @@ onUnmounted(() => {
               <span class="font-bold tracking-wider hover:opacity-100 transition-opacity">SENTINEL CO</span>
             </div>
           </div>
+          -->
         </div>
 
         <!-- Interactive iOS-style Glass Dashboard -->
@@ -264,7 +262,7 @@ onUnmounted(() => {
                 <span class="w-3 h-3 rounded-full bg-red-400"></span>
                 <span class="w-3 h-3 rounded-full bg-amber-400"></span>
                 <span class="w-3 h-3 rounded-full bg-green-400"></span>
-                <span class="text-xs font-semibold text-slate-400 dark:text-slate-500 font-mono ml-2">apex-ops-dash</span>
+                <span class="text-xs font-semibold text-slate-400 dark:text-slate-500 font-mono ml-2">awanusa-ops-dash</span>
               </div>
               <div class="flex items-center space-x-1 text-xs text-primary bg-primary/10 px-2.5 py-1 rounded-full font-semibold">
                 <Activity class="w-3.5 h-3.5 animate-pulse mr-1" />
@@ -449,7 +447,7 @@ onUnmounted(() => {
             <div class="space-y-4 font-sans text-sm">
               <div class="flex items-center space-x-3.5 text-slate-600 dark:text-slate-300">
                 <span class="p-2 rounded-xl glass-card text-primary"><Mail class="w-4 h-4" /></span>
-                <span>inquiries@apexsolutions.io</span>
+                <span>hello@awanusa.id</span>
               </div>
               <div class="flex items-center space-x-3.5 text-slate-600 dark:text-slate-300">
                 <span class="p-2 rounded-xl glass-card text-primary"><Phone class="w-4 h-4" /></span>
@@ -492,7 +490,7 @@ onUnmounted(() => {
               <div v-else-if="submitStep === 'loading'" class="py-20 text-center space-y-4 animate-fade-in">
                 <div class="w-12 h-12 border-4 border-slate-200 border-t-primary rounded-full animate-spin mx-auto"></div>
                 <p class="text-sm font-medium text-slate-600 dark:text-slate-300 font-mono">Mengamankan enkripsi form...</p>
-                <p class="text-xs text-slate-400 dark:text-slate-500 font-mono">Membuat tiket Apex IT Ops...</p>
+                <p class="text-xs text-slate-400 dark:text-slate-500 font-mono">Membuat tiket Awanusa  IT Ops...</p>
               </div>
 
               <!-- FORM VIEW -->
@@ -500,7 +498,7 @@ onUnmounted(() => {
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <!-- Name -->
                   <div>
-                    <label for="name" class="block text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">Nama Lengkap</label>
+                    <label for="name" class="block text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">Full Name</label>
                     <input 
                       id="name"
                       type="text" 
@@ -527,30 +525,31 @@ onUnmounted(() => {
 
                 <!-- Service Select -->
                 <div>
-                  <label for="service" class="block text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">Pilih Kebutuhan Layanan</label>
+                  <label for="service" class="block text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">Service Needs</label>
                   <select 
                     id="service"
                     v-model="form.service"
                     class="w-full glass-input px-4 py-3 rounded-xl text-sm focus:outline-none text-slate-800 dark:text-white cursor-pointer"
                   >
-                    <option value="" disabled selected>Pilih Layanan IT...</option>
-                    <option value="Cloud Migration">Migrasi Cloud & DevOps</option>
-                    <option value="Cybersecurity Audit">Audit Keamanan Siber & Pen-Testing</option>
-                    <option value="Software Development">Pembuatan Aplikasi Kustom</option>
-                    <option value="Systems Consulting">Konsultasi IT & Sistem Integrasi</option>
+                    <option value="" disabled selected>IT Support...</option>
+                    <option value="Cloud & DevSecOps Managed Services">Cloud & DevSecOps Managed Services</option>
+                    <option value="Office Digitalization">Office Digitalization</option>
+                    <option value="Application Development">Application Development</option>
+                    <option value="SDLC and DevOps Consulting">SDLC and DevOps Consulting</option>
+                    <option value="Other (Please explain)">Other (Please explain)</option>
                   </select>
                   <span v-if="errors.service" class="text-xs text-red-500 mt-1 block font-medium">{{ errors.service }}</span>
                 </div>
 
                 <!-- Message -->
                 <div>
-                  <label for="message" class="block text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">Deskripsi Kebutuhan Projek (Opsional)</label>
+                  <label for="message" class="block text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2">Project Details and Descriptions (Optional)</label>
                   <textarea 
                     id="message"
                     rows="4" 
                     v-model="form.message"
                     class="w-full glass-input px-4 py-3 rounded-xl text-sm focus:outline-none text-slate-800 dark:text-white"
-                    placeholder="Jelaskan kebutuhan performa sistem atau arsitektur teknologi Anda..."
+                    placeholder="Please explain you it consulting needs..."
                   ></textarea>
                 </div>
 
@@ -559,7 +558,7 @@ onUnmounted(() => {
                   type="submit" 
                   class="w-full py-4 rounded-xl bg-gradient-to-r from-primary to-secondary text-slate-900 font-bold hover:shadow-lg hover:shadow-sky-500/20 active:scale-98 transition-all flex items-center justify-center space-x-2 cursor-pointer"
                 >
-                  <span>Kirim Pengajuan</span>
+                  <span>Submit</span>
                   <Send class="w-4 h-4" />
                 </button>
               </form>
