@@ -2,6 +2,8 @@
 import { ref, onMounted } from 'vue'
 import { Sun, Moon, Menu, X, Zap, Check, ExternalLink } from 'lucide-vue-next'
 
+const baseUrl = import.meta.env.BASE_URL
+
 // Theme Management
 const isDark = ref(false)
 const toggleDarkMode = () => {
@@ -67,8 +69,8 @@ onMounted(() => {
             <!-- Desktop Menu -->
             <nav class="hidden md:flex items-center space-x-8">
               <router-link to="/" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">Home</router-link>
-              <a href="/#services" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">Services</a>
-              <a href="/#solutions" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">Portfolio</a>
+              <a :href="baseUrl + '#services'" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">Services</a>
+              <a :href="baseUrl + '#solutions'" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">Portfolio</a>
               <router-link to="/tech" class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">Technologies</router-link>
             </nav>
 
@@ -85,7 +87,7 @@ onMounted(() => {
               </button>
 
               <a 
-                href="/#contact" 
+                :href="baseUrl + '#contact'" 
                 class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-primary to-secondary text-slate-900 dark:text-slate-900 font-semibold text-sm hover:shadow-lg hover:shadow-sky-500/20 active:scale-98 transition-all duration-300 hover:opacity-90"
               >
                 Get Consultation
@@ -118,12 +120,12 @@ onMounted(() => {
           class="md:hidden border-t border-slate-200/10 dark:border-slate-800/10 px-4 py-4 space-y-3 glass-panel animate-fade-in"
         >
           <router-link @click="isMobileMenuOpen = false" to="/" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200 hover:text-primary transition-colors">Home</router-link>
-          <a @click="isMobileMenuOpen = false" href="/#services" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200 hover:text-primary transition-colors">Services</a>
-          <a @click="isMobileMenuOpen = false" href="/#solutions" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200 hover:text-primary transition-colors">Portfolio</a>
+          <a @click="isMobileMenuOpen = false" :href="baseUrl + '#services'" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200 hover:text-primary transition-colors">Services</a>
+          <a @click="isMobileMenuOpen = false" :href="baseUrl + '#solutions'" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200 hover:text-primary transition-colors">Portfolio</a>
           <router-link @click="isMobileMenuOpen = false" to="/tech" class="block py-2 text-base font-medium text-slate-700 dark:text-slate-200 hover:text-primary transition-colors">Technologies</router-link>
           <a 
             @click="isMobileMenuOpen = false"
-            href="/#contact" 
+            :href="baseUrl + '#contact'" 
             class="block text-center w-full py-3 rounded-xl bg-gradient-to-r from-primary to-secondary text-slate-900 font-semibold text-sm"
           >
             Get Consultation
@@ -153,10 +155,10 @@ onMounted(() => {
             <div>
               <h4 class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-4">Layanan</h4>
               <ul class="space-y-2.5 text-xs text-slate-600 dark:text-slate-400">
-                <li><a href="/#services" class="hover:text-primary transition-colors">Arsitektur Cloud</a></li>
-                <li><a href="/#services" class="hover:text-primary transition-colors">Keamanan Siber</a></li>
-                <li><a href="/#services" class="hover:text-primary transition-colors">Rekayasa Perangkat Lunak</a></li>
-                <li><a href="/#services" class="hover:text-primary transition-colors">IT Consulting</a></li>
+                <li><a :href="baseUrl + '#services'" class="hover:text-primary transition-colors">Arsitektur Cloud</a></li>
+                <li><a :href="baseUrl + '#services'" class="hover:text-primary transition-colors">Keamanan Siber</a></li>
+                <li><a :href="baseUrl + '#services'" class="hover:text-primary transition-colors">Rekayasa Perangkat Lunak</a></li>
+                <li><a :href="baseUrl + '#services'" class="hover:text-primary transition-colors">IT Consulting</a></li>
               </ul>
             </div>
 
@@ -164,9 +166,9 @@ onMounted(() => {
               <h4 class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-4">Perusahaan</h4>
               <ul class="space-y-2.5 text-xs text-slate-600 dark:text-slate-400">
                 <li><a href="#" class="hover:text-primary transition-colors">Tentang Kami</a></li>
-                <li><a href="/#solutions" class="hover:text-primary transition-colors">Studi Kasus</a></li>
+                <li><a :href="baseUrl + '#solutions'" class="hover:text-primary transition-colors">Studi Kasus</a></li>
                 <li><a href="#" class="hover:text-primary transition-colors">Karir</a></li>
-                <li><a href="/#contact" class="hover:text-primary transition-colors">Kontak</a></li>
+                <li><a :href="baseUrl + '#contact'" class="hover:text-primary transition-colors">Kontak</a></li>
               </ul>
             </div>
 
