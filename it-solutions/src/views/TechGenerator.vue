@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { Globe, Github, ArrowLeft, Layers, Tag } from 'lucide-vue-next'
+import { Globe, Github, ArrowLeft, Layers, Tag, Search } from 'lucide-vue-next'
 
 const route = useRoute()
 const currentTag = computed(() => route.params.tag)
@@ -9,6 +9,7 @@ const currentTag = computed(() => route.params.tag)
 const apps = ref([])
 const loading = ref(true)
 const error = ref(null)
+const searchQuery = ref('')
 
 onMounted(async () => {
   try {
@@ -45,12 +46,12 @@ onMounted(async () => {
 
     const headers = rows.shift()
     apps.value = rows.map(r => ({
-      name: r[0],
-      category: r[1],
+      name: r[0] || '',
+      category: r[1] || '',
       tags: r[2] ? r[2].split(',').map(t => t.trim()).filter(t => t) : [],
-      url: r[3],
-      github: r[4],
-      description: r[5]
+      url: r[3] || '',
+      github: r[4] || '',
+      description: r[5] || ''
     }))
   } catch (err) {
     console.error(err)
@@ -70,13 +71,29 @@ const allTags = computed(() => {
   return ['all', ...Array.from(tagSet).sort()]
 })
 
+const matchApp = (app, query) => {
+  if (!query) return true
+  return (
+    (app.name && app.name.toLowerCase().includes(query)) ||
+    (app.category && app.category.toLowerCase().includes(query)) ||
+    (app.tags && app.tags.some(t => t.toLowerCase().includes(query))) ||
+    (app.url && app.url.toLowerCase().includes(query)) ||
+    (app.github && app.github.toLowerCase().includes(query)) ||
+    (app.description && app.description.toLowerCase().includes(query))
+  )
+}
+
 // Filter and group apps
 const groupedApps = computed(() => {
   if (!apps.value.length) return {}
   
-  const filtered = apps.value.filter(app => 
-    currentTag.value === 'all' || (app.tags && app.tags.includes(currentTag.value))
-  )
+  const query = searchQuery.value.trim().toLowerCase()
+  
+  const filtered = apps.value.filter(app => {
+    const matchesTag = currentTag.value === 'all' || (app.tags && app.tags.includes(currentTag.value))
+    if (!matchesTag) return false
+    return matchApp(app, query)
+  })
   
   const grouped = {}
   filtered.forEach(app => {
@@ -146,10 +163,23 @@ const formatName = (str) => {
     <!-- RIGHT PANEL (CONTENT) -->
     <main class="flex-grow min-w-0 w-full relative px-2 sm:px-4 lg:px-8 flex flex-col h-[75vh]">
       <!-- Static Header -->
-      <div class="shrink-0 pb-6 mb-8 border-b border-slate-200/50 dark:border-slate-800/50">
+      <div class="shrink-0 pb-6 mb-8 border-b border-slate-200/50 dark:border-slate-800/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight font-sans text-slate-800 dark:text-white capitalize">
           {{ formatName(currentTag) }}
         </h1>
+
+        <!-- Search Input -->
+        <div class="w-full sm:w-80 relative group">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary transition-colors">
+            <Search class="w-4 h-4" />
+          </div>
+          <input 
+            v-model="searchQuery" 
+            type="text" 
+            class="w-full glass-input pl-10 pr-4 py-2.5 rounded-xl text-sm focus:outline-none text-slate-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 shadow-sm"
+            placeholder="Cari solusi, repo, metadata..."
+          />
+        </div>
       </div>
 
       <!-- Scrollable Apps List -->
@@ -162,7 +192,7 @@ const formatName = (str) => {
           {{ error }}
         </div>
         <div v-else-if="Object.keys(groupedApps).length === 0" class="text-center text-slate-500 py-10 glass-panel rounded-2xl font-medium">
-          Tidak ada aplikasi yang ditemukan untuk kategori ini.
+          Tidak ada aplikasi yang ditemukan {{ searchQuery ? `untuk pencarian "${searchQuery}"` : 'untuk kategori ini' }}.
         </div>
 
         <!-- Grouped Apps List -->
@@ -204,6 +234,12 @@ const formatName = (str) => {
                 <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-light">
                   {{ app.description }}
                 </p>
+                <!-- Tags -->
+                <div v-if="app.tags && app.tags.length" class="flex flex-wrap gap-1.5 pt-1">
+                  <span v-for="t in app.tags" :key="t" class="text-[11px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">
+                    #{{ t }}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
