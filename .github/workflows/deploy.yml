@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -40,7 +40,7 @@ jobs:
         working-directory: it-solutions
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Prepare Deployment Directory
         run: |
@@ -51,10 +51,10 @@ jobs:
           echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=/it-solutions/" /><title>Redirecting...</title></head><body>Redirecting to <a href="/it-solutions/">it-solutions</a>...</body></html>' > dist-pages/index.html
 
       - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: dist-pages
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
